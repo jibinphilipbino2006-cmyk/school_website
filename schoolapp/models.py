@@ -31,7 +31,7 @@ class ClassRoom(models.Model):
         unique=True,
         validators=[
            MinLengthValidator(
-                4,
+                3,
                 message='Class must contain exactly 3 digits.'
             )
         ]

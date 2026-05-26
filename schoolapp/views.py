@@ -10,8 +10,27 @@ from django.contrib import messages
 # Home Page
 def home(request):
 
-    return render(request, 'home.html')
+    total_students = Student.objects.count()
 
+    total_teachers = Teacher.objects.count()
+
+    total_classrooms = ClassRoom.objects.count()
+
+    context = {
+
+        'total_students': total_students,
+
+        'total_teachers': total_teachers,
+
+        'total_classrooms': total_classrooms,
+
+    }
+
+    return render(
+        request,
+        'home.html',
+        context
+    )
 
 # Admin Page
 def admin_page(request):
@@ -245,3 +264,29 @@ def delete_class(request, id):
     classroom.delete()
 
     return redirect('admin_page')
+from django.shortcuts import render, redirect
+
+
+def login_page(request):
+
+    username = "admin"
+    password = "admin123"
+
+    if request.method == "POST":
+
+        user = request.POST.get("username")
+        pwd = request.POST.get("password")
+
+        if user == username and pwd == password:
+
+            return redirect('/admin-page/')
+
+        else:
+
+            return render(
+                request,
+                'login.html',
+                {'error': 'Invalid Username or Password'}
+            )
+
+    return render(request, 'login.html')

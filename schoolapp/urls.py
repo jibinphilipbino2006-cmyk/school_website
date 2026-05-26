@@ -1,65 +1,75 @@
+from django.contrib import admin
 from django.urls import path
-from . import views
 
+from schoolapp import views
 
 urlpatterns = [
 
-    # Home Page
+    path(
+        'admin/',
+        admin.site.urls
+    ),
+
     path(
         '',
         views.home,
         name='home'
     ),
 
-    # Admin Dashboard
+    # LOGIN PAGE
+    path(
+        'login/',
+        views.login_page,
+        name='login'
+    ),
+
+    # ADMIN PAGE
     path(
         'admin-page/',
         views.admin_page,
         name='admin_page'
     ),
 
-    # Class Page
+    # CLASS PAGE
     path(
         'class/<int:division_id>/',
         views.class_page,
         name='class_page'
     ),
 
-    # Edit Student
+    # EDIT STUDENT
     path(
         'edit-student/<int:student_id>/',
         views.edit_student,
         name='edit_student'
     ),
 
-    # Delete Student
+    # DELETE STUDENT
     path(
         'delete-student/<int:student_id>/',
         views.delete_student,
         name='delete_student'
     ),
 
-    # Delete Class
+    # DELETE CLASS
     path(
         'delete-class/<int:id>/',
         views.delete_class,
         name='delete_class'
     ),
 
-    # Delete Division
+    # DELETE DIVISION
     path(
         'delete-division/<int:id>/',
         views.delete_division,
         name='delete_division'
     ),
+
+    # EDIT DIVISION
     path(
-    'edit-division/<int:id>/',
-    views.edit_division,
-    name='edit_division'
+        'edit-division/<int:id>/',
+        views.edit_division,
+        name='edit_division'
     ),
-    path(
-    'delete-class/<int:id>/',
-    views.delete_class,
-    name='delete_class'
-    ),
+
 ]

@@ -1,0 +1,4 @@
+db.sqlite3
+envr/
+__pycache__/
+*.pyc
